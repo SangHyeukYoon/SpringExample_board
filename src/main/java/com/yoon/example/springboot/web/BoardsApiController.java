@@ -1,6 +1,7 @@
 package com.yoon.example.springboot.web;
 
 import com.yoon.example.springboot.service.boards.BoardService;
+import com.yoon.example.springboot.web.dto.BoardsCreateRequestDto;
 import com.yoon.example.springboot.web.dto.BoardsSaveRequestDto;
 import com.yoon.example.springboot.web.dto.BoardsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
@@ -17,26 +18,17 @@ public class BoardsApiController {
     private final BoardService boardService;
 
     @PostMapping("/board")
-    public Long create(@RequestParam("title") String title,
-                       @RequestParam("author") String author,
-                       @RequestParam("content") String content,
-                       @RequestParam(value = "files", required = false)
-                                   List<MultipartFile> files) throws Exception {
+    public Long create(BoardsCreateRequestDto requestDto) throws Exception {
+        List<MultipartFile> files = requestDto.getFiles();
 
-        // DEBUG
-        if (files != null) {
-            for (MultipartFile file : files) {
-                System.out.println(file.getOriginalFilename());
-            }
-        }
-
-        BoardsSaveRequestDto requestDto = BoardsSaveRequestDto.builder()
-                .title(title)
-                .author(author)
-                .content(content)
+        BoardsSaveRequestDto saveRequestDto = BoardsSaveRequestDto.builder()
+                .title(requestDto.getTitle())
+                .author(requestDto.getAuthor())
+                .content(requestDto.getContent())
+                .files(files)
                 .build();
 
-        return boardService.save(requestDto, files);
+        return boardService.save(saveRequestDto);
     }
 
     @PutMapping("/board/{id}")

@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
 
 @Data
-public class BoardsSaveRequestDto {
+public class BoardsCreateRequestDto {
 
     private String title;
     private String author;
@@ -17,10 +17,11 @@ public class BoardsSaveRequestDto {
     private List<MultipartFile> files;
 
     @Builder
-    BoardsSaveRequestDto(String title, String author, String content, List<MultipartFile> files) {
+    BoardsCreateRequestDto(String title, String author, String content, List<MultipartFile> files) {
         this.title = title;
         this.author = author;
         this.content = content;
         this.files = files;
     }
+
 }

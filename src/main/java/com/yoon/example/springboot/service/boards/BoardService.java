@@ -24,8 +24,8 @@ public class BoardService {
     private final FileSaveUtil fileSaveUtil;
 
     @Transactional
-    public Long save(BoardsSaveRequestDto requestDto, List<MultipartFile> files) throws Exception {
-        List<UploadedFiles> uploadedFiles = fileSaveUtil.saveFiles(files);
+    public Long save(BoardsSaveRequestDto requestDto) throws Exception {
+        List<UploadedFiles> uploadedFiles = fileSaveUtil.saveFiles(requestDto.getFiles());
         Boards boards = Boards.builder()
                 .title(requestDto.getTitle())
                 .author(requestDto.getAuthor())
