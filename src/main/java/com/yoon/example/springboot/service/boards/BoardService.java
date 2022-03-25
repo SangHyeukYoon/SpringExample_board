@@ -4,15 +4,15 @@ import com.yoon.example.springboot.domain.board.Boards;
 import com.yoon.example.springboot.domain.board.BoardsRepository;
 import com.yoon.example.springboot.domain.board.FileSaveUtil;
 import com.yoon.example.springboot.domain.board.UploadedFiles;
-import com.yoon.example.springboot.web.dto.BoardsListResponseDto;
-import com.yoon.example.springboot.web.dto.BoardsResponseDto;
-import com.yoon.example.springboot.web.dto.BoardsSaveRequestDto;
-import com.yoon.example.springboot.web.dto.BoardsUpdateRequestDto;
+import com.yoon.example.springboot.web.dto.boards.BoardsListResponseDto;
+import com.yoon.example.springboot.web.dto.boards.BoardsResponseDto;
+import com.yoon.example.springboot.web.dto.boards.BoardsSaveRequestDto;
+import com.yoon.example.springboot.web.dto.boards.BoardsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,17 +25,15 @@ public class BoardService {
 
     @Transactional
     public Long save(BoardsSaveRequestDto requestDto) throws Exception {
-        List<UploadedFiles> uploadedFiles = fileSaveUtil.saveFiles(requestDto.getFiles());
         Boards boards = Boards.builder()
                 .title(requestDto.getTitle())
                 .author(requestDto.getAuthor())
                 .content(requestDto.getContent())
                 .build();
 
-        if (! uploadedFiles.isEmpty()) {
-            for (UploadedFiles uploadedFile: uploadedFiles) {
-                boards.addFiles(uploadedFile);
-            }
+        List<UploadedFiles> uploadedFiles = fileSaveUtil.saveFiles(requestDto.getFiles());
+        for (UploadedFiles uploadedFile: uploadedFiles) {
+            boards.addFiles(uploadedFile);
         }
 
         return boardsRepository.save(boards).getId();
@@ -53,7 +51,8 @@ public class BoardService {
 
     @Transactional
     public List<BoardsListResponseDto> findAllDesc() {
-        return boardsRepository.findAllByOrderByIdDesc().stream()
+        return boardsRepository.findAllByOrderByIdDesc()
+                .orElseGet(ArrayList::new).stream()
                 .map(BoardsListResponseDto::new)
                 .collect(Collectors.toList());
     }

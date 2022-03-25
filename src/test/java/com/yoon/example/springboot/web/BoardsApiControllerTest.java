@@ -3,7 +3,7 @@ package com.yoon.example.springboot.web;
 import com.yoon.example.springboot.domain.board.Boards;
 import com.yoon.example.springboot.domain.board.BoardsRepository;
 import com.yoon.example.springboot.domain.board.UploadedFiles;
-import com.yoon.example.springboot.web.dto.BoardsUpdateRequestDto;
+import com.yoon.example.springboot.web.dto.boards.BoardsUpdateRequestDto;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

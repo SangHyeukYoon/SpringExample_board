@@ -1,4 +1,4 @@
-package com.yoon.example.springboot.web.dto;
+package com.yoon.example.springboot.web.dto.boards;
 
 import com.yoon.example.springboot.domain.board.Boards;
 import lombok.Getter;

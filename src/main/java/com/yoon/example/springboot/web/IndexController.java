@@ -1,7 +1,7 @@
 package com.yoon.example.springboot.web;
 
 import com.yoon.example.springboot.service.boards.BoardService;
-import com.yoon.example.springboot.web.dto.BoardsResponseDto;
+import com.yoon.example.springboot.web.dto.boards.BoardsResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

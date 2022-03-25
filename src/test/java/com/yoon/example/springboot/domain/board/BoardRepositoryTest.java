@@ -61,7 +61,8 @@ public class BoardRepositoryTest {
                 .build());
 
         // when
-        List<Boards> boardsList = boardsRepository.findAllByOrderByIdDesc();
+        List<Boards> boardsList = boardsRepository.findAllByOrderByIdDesc()
+                .orElseThrow(IllegalArgumentException::new);
 
         // then
         Boards board_1 = boardsList.get(0);
