@@ -1,9 +1,6 @@
 package com.yoon.example.springboot.service.boards;
 
-import com.yoon.example.springboot.domain.board.Boards;
-import com.yoon.example.springboot.domain.board.BoardsRepository;
-import com.yoon.example.springboot.domain.board.FileSaveUtil;
-import com.yoon.example.springboot.domain.board.UploadedFiles;
+import com.yoon.example.springboot.domain.board.*;
 import com.yoon.example.springboot.web.dto.BoardsListResponseDto;
 import com.yoon.example.springboot.web.dto.BoardsResponseDto;
 import com.yoon.example.springboot.web.dto.BoardsSaveRequestDto;
@@ -21,6 +18,7 @@ import java.util.stream.Collectors;
 public class BoardService {
 
     private final BoardsRepository boardsRepository;
+    private final UploadedFilesRepository filesRepository;
     private final FileSaveUtil fileSaveUtil;
 
     @Transactional
@@ -71,6 +69,19 @@ public class BoardService {
         Boards board = boardsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시물이 없습니다. id=" + id));
         boardsRepository.delete(board);
+    }
+
+    @Transactional
+    public void delImg(Long id, String fileName) {
+        Boards board = boardsRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("해당 게시물이 없습니다. id=" + id));
+        UploadedFiles uploadedFile = filesRepository.findByBoards_IdAndRealName(id, fileName)
+                .orElseThrow(() -> new IllegalArgumentException("해당 파일이 없습니다. fileName=" + fileName));
+
+        board.deleteImg(uploadedFile);
+        filesRepository.delete(uploadedFile);
+
+        // TODO: delete real file?
     }
 
 }

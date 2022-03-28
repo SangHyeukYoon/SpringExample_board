@@ -24,7 +24,7 @@
         </form>
         {{#board.filePath}}
             <div>
-            <img src={{.}}>
+            <img src={{.}}> <button type="button" class="btn-delete-img" value={{.}}></button>
             </div>
         {{/board.filePath}}
         <a href="/" role="button" class="btn btn-secondary">취소</a>

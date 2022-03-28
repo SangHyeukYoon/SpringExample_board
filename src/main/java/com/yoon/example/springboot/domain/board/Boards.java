@@ -61,4 +61,8 @@ public class Boards extends BaseTimeEntity {
         return realPath;
     }
 
+    public void deleteImg(UploadedFiles uploadedFile) {
+        fileDirs.remove(uploadedFile);
+    }
+
 }

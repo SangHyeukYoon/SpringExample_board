@@ -17,7 +17,7 @@ public class BoardsApiController {
 
     private final BoardService boardService;
 
-    @PostMapping("/board")
+    @PostMapping("/api/v1/board/post")
     public Long create(BoardsCreateRequestDto requestDto) throws Exception {
         List<MultipartFile> files = requestDto.getFiles();
 
@@ -31,15 +31,21 @@ public class BoardsApiController {
         return boardService.save(saveRequestDto);
     }
 
-    @PutMapping("/board/{id}")
+    @PutMapping("/api/v1/board/{id}")
     public Long update(@PathVariable Long id, @RequestBody BoardsUpdateRequestDto requestDto) {
         boardService.update(id, requestDto);
         return id;
     }
 
-    @DeleteMapping("/board/{id}")
+    @DeleteMapping("/api/v1/board/{id}")
     public Long delete(@PathVariable Long id) {
         boardService.delete(id);
+        return id;
+    }
+
+    @DeleteMapping("/api/v1/board/delImg/{id}/{fileName}")
+    public Long deleteImg(@PathVariable Long id, @PathVariable String fileName) {
+        boardService.delImg(id, fileName);
         return id;
     }
 

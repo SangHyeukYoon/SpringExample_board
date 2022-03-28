@@ -25,6 +25,14 @@ public class IndexController {
         return "boards-save";
     }
 
+    @GetMapping("/board/read/{id}")
+    public String readBoard(@PathVariable Long id, Model model) {
+        BoardsResponseDto dto = boardService.findById(id);
+        model.addAttribute("board", dto);
+
+        return "boards-read";
+    }
+
     @GetMapping("/board/update/{id}")
     public String postsUpdate(@PathVariable Long id, Model model) {
         BoardsResponseDto dto = boardService.findById(id);

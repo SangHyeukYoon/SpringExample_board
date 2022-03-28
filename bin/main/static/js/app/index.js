@@ -13,6 +13,10 @@ var main = {
         $("#btn-delete").on('click', function () {
             _this.delete();
         });
+
+        $(".btn-delete-img").on('click', function () {
+            _this.deleteImg($(this).val());
+        });
     },
 
     save : function () {
@@ -29,8 +33,8 @@ var main = {
 
         $.ajax({
             type: "POST", 
-            enctype: "multipart/form-data", 
-            url: "/board", 
+            contentType: "multipart/form-data",
+            url: "/api/v1/board/post",
             data: data, 
             processData: false, 
             contentType: false, 
@@ -41,25 +45,6 @@ var main = {
         }).fail(function (error) {
             alert(JSON.stringify(error));
         })
-
-        // var data = {
-        //     title : $("#title").val(),
-        //     author : $("#author").val(),
-        //     content : $("#content").val()
-        // };
-
-        // $.ajax({
-        //     type : 'POST',
-        //     url : '/api/v1/posts',
-        //     dataType : 'json',
-        //     contentType : 'application/json; charset=utf-8',
-        //     data : JSON.stringify(data)
-        // }).done(function () {
-        //     alert('글이 등록되었습니다.');
-        //     window.location.href = '/';
-        // }).fail(function (error) {
-        //     alert(JSON.stringify(error));
-        // });
     },
 
     update : function () {
@@ -72,7 +57,7 @@ var main = {
 
         $.ajax({
             type : 'PUT',
-            url : '/board/'+ id,
+            url : '/api/v1/board/'+ id,
             dataType : 'json',
             contentType : 'application/json; charset=utf-8',
             data : JSON.stringify(data)
@@ -89,12 +74,25 @@ var main = {
 
         $.ajax({
             type : 'DELETE',
-            url : '/board/'+ id,
+            url : '/api/v1/board/'+ id,
             dataType : 'json',
             contentType : 'application/json; charset=utf-8'
         }).done(function () {
             alert('글이 삭제되었습니다.');
             window.location.href = '/';
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    },
+
+    deleteImg : function (imgName) {
+        var id = $("#id").val();
+
+        $.ajax({
+            type : 'DELETE', 
+            url : '/api/v1/board/delImg/' + id + '/' + imgName.slice(5)
+        }).done(function () {
+            alert('이미지가 삭제되었습니다.');
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
