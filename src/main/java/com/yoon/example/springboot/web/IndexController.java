@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RequiredArgsConstructor
 @Controller
@@ -15,8 +16,20 @@ public class IndexController {
     private final BoardService boardService;
 
     @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("boards", boardService.findAllDesc());
+    public String index(@RequestParam(value="page", defaultValue = "1") int page,
+                        @RequestParam(value="size", defaultValue = "2") int size,
+                        Model model) {
+        Long count = boardService.count();
+        int maxPage;
+
+        if (count == 0) {
+            maxPage = 1;
+        } else {
+            maxPage = (int)(count - 1) / size + 1;
+        }
+
+        model.addAttribute("boards", boardService.findAllDesc(page, size));
+        model.addAttribute("maxPage", maxPage);
         return "index";
     }
 

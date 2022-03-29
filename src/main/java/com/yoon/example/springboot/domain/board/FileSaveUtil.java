@@ -22,7 +22,7 @@ public class FileSaveUtil {
         }
 
         for(MultipartFile file: files) {
-            String path = "/Users/yoon/IdeaProjects/SpringExample/files/" + file.getOriginalFilename();
+            String path = "C:/Users/nyoon/IdeaProjects/SpringExample_board/files/" + file.getOriginalFilename();
             String accessPath = "/img/" + file.getOriginalFilename();
 
             file.transferTo(new File(path));

@@ -6,9 +6,10 @@ import com.yoon.example.springboot.web.dto.BoardsResponseDto;
 import com.yoon.example.springboot.web.dto.BoardsSaveRequestDto;
 import com.yoon.example.springboot.web.dto.BoardsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -39,6 +40,10 @@ public class BoardService {
         return boardsRepository.save(boards).getId();
     }
 
+    public Long count() {
+        return boardsRepository.count();
+    }
+
     @Transactional
     public Long update(Long id, BoardsUpdateRequestDto requestDto) {
         Boards board = boardsRepository.findById(id)
@@ -50,8 +55,9 @@ public class BoardService {
     }
 
     @Transactional
-    public List<BoardsListResponseDto> findAllDesc() {
-        return boardsRepository.findAllByOrderByIdDesc().stream()
+    public List<BoardsListResponseDto> findAllDesc(int page, int size) {
+        Pageable pageable = PageRequest.of(page - 1, size);
+        return boardsRepository.findAllByOrderByIdDesc(pageable).stream()
                 .map(BoardsListResponseDto::new)
                 .collect(Collectors.toList());
     }

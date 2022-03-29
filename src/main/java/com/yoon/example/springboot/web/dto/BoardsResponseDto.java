@@ -3,6 +3,7 @@ package com.yoon.example.springboot.web.dto;
 import com.yoon.example.springboot.domain.board.Boards;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Getter
