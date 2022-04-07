@@ -34,7 +34,7 @@ public class IndexController {
 
     @GetMapping("/")
     public String index(@RequestParam(value="page", defaultValue = "1") int page,
-                        @RequestParam(value="size", defaultValue = "2") int size,
+                        @RequestParam(value="size", defaultValue = "10") int size,
                         Model model) {
         Long count = boardService.count();
         int maxPage;

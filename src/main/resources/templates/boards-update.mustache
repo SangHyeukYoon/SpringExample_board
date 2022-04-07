@@ -1,9 +1,9 @@
 {{>layout/header}}
 
-<h1>게시글 수정</h1>
+<h1 class="text-center">게시글 수정</h1>
 
-<div class="col-md-12">
-    <div class="col-md-4">
+<div class="container square-box">
+    <div class="col-md-8">
         <form>
             <div class="form-group">
                 <label for="title">글번호</label>
@@ -35,6 +35,9 @@
             </div>
             </div>
         {{/board.filePath}}
+    </div>
+
+    <div class="p-2 col-md-8">
         <a href="/" role="button" class="btn btn-secondary">취소</a>
         <button type="button" class="btn btn-primary" id="btn-update">수정</button>
         <button type="button" class="btn btn-danger" id="btn-delete">삭제</button>

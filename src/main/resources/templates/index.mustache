@@ -1,44 +1,42 @@
 {{>layout/header}}
 
-<h1>게시판</h1>
-<div class="col-md-12">
+<h1 class="text-center">게시판</h1>
+
+<div class="container square-box">
     <div class="row">
-        <div class="col-md-6">
+
+        <div class="col">
             <a href="/board/save" role="button" class="btn btn-primary">글 등록</a>
         </div>
-
-        <div class="col-md-6">
-        <div class="float-right">
+        <div class="col-6"></div>
+        <div class="col justify-content-end">
             {{#nickname}}
-                Hello! <span id="user">{{nickname}}</span>
+                반갑습니다! <span id="user"><b>{{nickname}}</b> 님</span>
                 <a href="/logout" class="btn btn-info active" role="button">Logout</a>
             {{/nickname}}
             {{^nickname}}
                 <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
             {{/nickname}}
         </div>
-        </div>
+
     </div>
 </div>
+
 <br>
-<!-- 목록 출력 영역 -->
-<div class="table-responsive">
-<table class="table table-horizontal table-bordered">
+
+<div class="d-flex justify-content-center">
+<table class="table table-horizontal table-bordered square-box">
     <thead class="thead-strong">
     <tr>
-        <th scope="col" style="width: 15%">게시글 번호</th>
-        <th scope="col">제목</th>
-        <th scope="col">작성자</th>
-        <th scope="col" style="width: 25%">최종수정일</th>
+        <th scope="col" style="width: 70%">제목</th>
+        <th scope="col" style="width: 30%">작성자</th>
     </tr>
     </thead>
     <tbody id="tbody">
     {{#boards}}
         <tr>
-            <td scope="row">{{id}}</td>
             <td><a href="/board/read/{{id}}">{{title}}</a></td>
             <td>{{author}}</td>
-            <td>{{modifiedDate}}</td>
         </tr>
     {{/boards}}
     </tbody>
