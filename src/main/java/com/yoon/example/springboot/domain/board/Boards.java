@@ -1,6 +1,7 @@
 package com.yoon.example.springboot.domain.board;
 
 import com.yoon.example.springboot.domain.BaseTimeEntity;
+import com.yoon.example.springboot.domain.user.User;
 import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,11 +31,15 @@ public class Boards extends BaseTimeEntity {
     @OneToMany(mappedBy = "boards", cascade = CascadeType.REMOVE)
     List<UploadedFiles> fileDirs = new ArrayList<>();
 
+    @OneToOne
+    User user;
+
     @Builder
-    public Boards(String title, String content, String author) {
+    public Boards(String title, String content, String author, User user) {
         this.title = title;
         this.content = content;
         this.author = author;
+        this.user = user;
     }
 
     public void update(String title, String content) {

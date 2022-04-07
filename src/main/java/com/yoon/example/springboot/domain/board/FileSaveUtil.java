@@ -1,6 +1,7 @@
 package com.yoon.example.springboot.domain.board;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,6 +15,9 @@ public class FileSaveUtil {
 
     private final UploadedFilesRepository filesRepository;
 
+    @Value("${resource.path}")
+    private String resourcePath;
+
     public List<UploadedFiles> saveFiles(List<MultipartFile> files) throws Exception {
         List<UploadedFiles> uploadedFiles = new ArrayList<>();
 
@@ -22,7 +26,7 @@ public class FileSaveUtil {
         }
 
         for(MultipartFile file: files) {
-            String path = "C:/Users/nyoon/IdeaProjects/SpringExample_board/files/" + file.getOriginalFilename();
+            String path = resourcePath.substring(8) + file.getOriginalFilename();
             String accessPath = "/img/" + file.getOriginalFilename();
 
             file.transferTo(new File(path));

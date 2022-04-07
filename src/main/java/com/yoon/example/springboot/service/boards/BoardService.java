@@ -1,6 +1,9 @@
 package com.yoon.example.springboot.service.boards;
 
 import com.yoon.example.springboot.domain.board.*;
+import com.yoon.example.springboot.domain.user.User;
+import com.yoon.example.springboot.domain.user.UserRepository;
+import com.yoon.example.springboot.web.UnauthorizedException;
 import com.yoon.example.springboot.web.dto.BoardsListResponseDto;
 import com.yoon.example.springboot.web.dto.BoardsResponseDto;
 import com.yoon.example.springboot.web.dto.BoardsSaveRequestDto;
@@ -8,6 +11,7 @@ import com.yoon.example.springboot.web.dto.BoardsUpdateRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,15 +24,22 @@ public class BoardService {
 
     private final BoardsRepository boardsRepository;
     private final UploadedFilesRepository filesRepository;
+    private final UserRepository userRepository;
+
     private final FileSaveUtil fileSaveUtil;
 
     @Transactional
     public Long save(BoardsSaveRequestDto requestDto) throws Exception {
         List<UploadedFiles> uploadedFiles = fileSaveUtil.saveFiles(requestDto.getFiles());
+
+        User user = userRepository.findByEmail(requestDto.getUserEmail())
+                .orElseThrow(() -> new UsernameNotFoundException("유저를 찾을 수 없습니다."));
+
         Boards boards = Boards.builder()
                 .title(requestDto.getTitle())
                 .author(requestDto.getAuthor())
                 .content(requestDto.getContent())
+                .user(user)
                 .build();
 
         if (! uploadedFiles.isEmpty()) {
@@ -48,6 +59,13 @@ public class BoardService {
     public Long update(Long id, BoardsUpdateRequestDto requestDto) {
         Boards board = boardsRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+
+        User user = userRepository.findByEmail(requestDto.getUserEmail())
+                .orElseThrow(() -> new UsernameNotFoundException("유저를 찾을 수 없습니다."));
+
+        if (! user.equals(board.getUser())) {
+            throw new UnauthorizedException("권한이 없습니다.");
+        }
 
         board.update(requestDto.getTitle(), requestDto.getContent());
 

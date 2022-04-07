@@ -6,6 +6,18 @@
         <div class="col-md-6">
             <a href="/board/save" role="button" class="btn btn-primary">글 등록</a>
         </div>
+
+        <div class="col-md-6">
+        <div class="float-right">
+            {{#nickname}}
+                Hello! <span id="user">{{nickname}}</span>
+                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+            {{/nickname}}
+            {{^nickname}}
+                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
+            {{/nickname}}
+        </div>
+        </div>
     </div>
 </div>
 <br>

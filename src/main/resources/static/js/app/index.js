@@ -14,6 +14,10 @@ var main = {
             _this.delete();
         });
 
+        $("#btn-register").on('click', function () {
+            _this.registerUser();
+        });
+
         $("button[name='btn-del-img']").on('click', function () {
             _this.deleteImg($(this).val(), $(this).parent().parent().parent());
         });
@@ -115,7 +119,7 @@ var main = {
             window.location.href = "/";
         }).fail(function (error) {
             alert(JSON.stringify(error));
-        })
+        });
     },
 
     update : function () {
@@ -131,7 +135,11 @@ var main = {
             url : '/api/v1/board/'+ id,
             dataType : 'json',
             contentType : 'application/json; charset=utf-8',
-            data : JSON.stringify(data)
+            data : JSON.stringify(data),
+            statusCode: {
+                401: function (response) {
+                    alert('권한이 없습니다.');
+            }}
         }).done(function () {
             alert('글이 수정되었습니다.');
             window.location.href = '/';
@@ -166,6 +174,25 @@ var main = {
             alert('이미지가 삭제되었습니다.');
             div.remove();
             // $('div').remove(this);
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+    },
+
+    registerUser : function () {
+        var data = {
+            nickname : $("#nickname").val()
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/register",
+            data: JSON.stringify(data),
+            dataType : 'json',
+            contentType : 'application/json; charset=utf-8'
+        }).done(function() {
+            alert('가입되었습니다.');
+            window.location.href = "/";
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
