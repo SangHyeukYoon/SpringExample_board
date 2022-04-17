@@ -1,0 +1,106 @@
+body {
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #263343;
+    padding: 8px 12px;
+}
+
+.site-name {
+    font-size: 32px;
+    font-family: "Jua";
+    color: white;
+    text-decoration: none;
+}
+
+.register-sector {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.board-name {
+    font-family: "Jua";
+    font-size: 20px;
+}
+
+.write-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Nanum+Gothic+Coding";
+}
+
+.write-form {
+    width: 100%;
+}
+
+.form-email {
+    margin: 10px auto;
+}
+
+.form-email input {
+    background-color: rgb(196, 196, 196);
+    border: none;
+    border-radius: 2px;
+}
+
+.form-nickname {
+    margin: 10px auto;
+}
+
+.form-btn {
+    margin: 10px auto;
+}
+
+.cancel-btn {
+    border: 0;
+    border-radius: 4px;
+    width: 55px;
+    height: 30px;
+    background-color: red;
+    color: white;
+    font-size: 14px;
+}
+
+.cancel-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.register-btn {
+    border: 0;
+    border-radius: 4px;
+    width: 55px;
+    height: 30px;
+    background-color: rgb(37, 113, 255);
+    color: white;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        height: 30px;
+    }
+
+    .site-name {
+        font-size: 18px;
+    }
+
+    .register-sector {
+        width: 100%;
+    }
+
+    .board-name {
+        font-size: 14px;
+        margin-left: 2px;
+    }
+
+    .write-area {
+        width: 100%;
+        margin: auto 2px;
+        font-size: 16px;
+    }
+}

@@ -1,0 +1,163 @@
+body {
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #263343;
+    padding: 8px 12px;
+}
+
+.site-name {
+    font-size: 32px;
+    font-family: "Jua";
+    color: white;
+    text-decoration: none;
+}
+
+.content-sector {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.board-name {
+    font-family: "Jua";
+    font-size: 20px;
+}
+
+.article-sector {
+    display: flex;
+    flex-direction: column;
+    font-family: "Nanum+Gothic+Coding";
+    align-items: center;
+}
+
+.articles {
+    width: 80%;
+}
+
+.title-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.title {
+    font-size: 26px;
+}
+
+.author {
+    font-size: 18px;
+}
+
+.content {
+    margin: 10px 0;
+    font-size: 20px;
+}
+
+.img-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-list img {
+    max-width: 100%;
+    margin: 10px 0;
+}
+
+.btns {
+    padding: 10px 0;
+}
+
+.back-btn {
+    border: 0;
+    border-radius: 4px;
+    width: 80px;
+    height: 30px;
+    background-color: rgb(54, 54, 54);
+    color: white;
+    font-size: 14px;
+}
+
+.upate-btn {
+    border: 0;
+    border-radius: 4px;
+    width: 60px;
+    height: 30px;
+    background-color: rgb(37, 113, 255);
+    color: white;
+    font-size: 14px;
+}
+
+.upate-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        height: 30px;
+    }
+
+    .site-name {
+        font-size: 18px;
+    }
+
+    .content-sector {
+        width: 100%;
+    }
+
+    .board-name {
+        font-size: 14px;
+        margin-left: 2px;
+    }
+
+    .title-section {
+        margin-bottom: 5px;
+        height: 40px;
+    }
+
+    .article-sector {
+        margin: 0 2px;
+        align-items: flex-start;
+    }
+
+    .articles {
+        font-size: 16px;
+        width: 100%;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+    
+    .author {
+        font-size: 16px;
+    }
+    
+    .content {
+        margin: 5px 0;
+        font-size: 18px;
+    }
+
+    .img-list img {
+        max-width: 95%;
+        margin: 5px 0;
+    }
+
+    .back-btn {
+        width: 70px;
+        height: 25px;
+        font-size: 12px;
+    }
+    
+    .upate-btn {
+        width: 45px;
+        height: 25px;
+        font-size: 12px;
+    }
+}

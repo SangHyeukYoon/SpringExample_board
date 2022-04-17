@@ -1,0 +1,159 @@
+body {
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #263343;
+    padding: 8px 12px;
+}
+
+.site-name {
+    font-size: 32px;
+    font-family: "Jua";
+    color: white;
+    text-decoration: none;
+}
+
+.content-sector {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.board-name {
+    font-family: "Jua";
+    font-size: 20px;
+}
+
+.write-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Nanum+Gothic+Coding";
+}
+
+.write-form {
+    width: 80%;
+}
+
+.form-title {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.input-title {
+    width: 500px;
+}
+
+.form-content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.content {
+    height: 400px;
+    resize: none;
+}
+
+.form-files {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 0;
+}
+
+.form-btn {
+    padding: 10px 0;
+}
+
+.cancel-btn {
+    border: 0;
+    border-radius: 4px;
+    width: 60px;
+    height: 30px;
+    background-color: rgb(54, 54, 54);
+    color: white;
+    font-size: 14px;
+}
+
+.cancel-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.save-btn {
+    border: 0;
+    border-radius: 4px;
+    width: 60px;
+    height: 30px;
+    background-color: rgb(37, 113, 255);
+    color: white;
+    font-size: 14px;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        height: 30px;
+    }
+
+    .site-name {
+        font-size: 18px;
+    }
+
+    .content-sector {
+        width: 100%;
+    }
+
+    .board-name {
+        font-size: 14px;
+        margin-left: 2px;
+    }
+
+    .write-area {
+        width: 100%;
+        margin: auto 2px;
+        font-size: 16px;
+    }
+
+    .write-form {
+        width: 100%;
+    }
+
+    .form-title {
+        padding: 4px 0;
+    }
+    
+    .input-title {
+        width: 80%;
+    }
+
+    .form-content {
+        padding: 4px 0;
+    }
+    
+    .content {
+        width: 95%
+    }
+    
+    .form-files {
+        padding: 4px 0;
+    }
+    
+    .form-btn {
+        padding: 4px 0;
+    }
+
+    .cancel-btn {
+        width: 60px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    .save-btn {
+        width: 60px;
+        height: 30px;
+        font-size: 12px;
+    }
+}

@@ -1,39 +1,51 @@
-{{>layout/header}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h1 class="text-center">게시글</h1>
+    <link href="https://fonts.googleapis.com/css?family=Jua:400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" defer></script>
 
-<div class="container square-box">
-    <div class="col-md-8">
-        <form>
-            <div class="form-group">
-                <label for="title">글번호</label>
-                <input type="text" class="form-control" id="id"value="{{board.id}}" readonly>
+    <link rel="stylesheet" href="/css/read-style.css">
+
+    <title>Article</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="site-name">Spring Boot Example</a>
+    </nav>
+
+    <div class="content-sector">
+        <div class="board-name">
+            <h2>게시판</h2>
+        </div>
+
+        <div class="article-sector">
+            <div class="articles">
+                <div class="title-section">
+                    <article class="title"><b>{{board.title}}</b></article>
+                    <article class="author">{{board.author}}</article>
+                </div>
+
+                <article class="content">
+                    {{board.content}}
+                </article>
+
+                <div class="img-list">
+                    {{#board.filePath}}
+                        <img src={{.}} alt="image" />
+                    {{/board.filePath}}
+                </div>
+
+                <div class="btns">
+                    <button class="back-btn" onclick="history.back()">뒤로 가기</button>
+                    <button type="button" class="upate-btn" id="upate-btn"><a href="/board/update/{{board.id}}">수정</a></button>
+                </div>
             </div>
-            <div class="form-group">
-                <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" value="{{board.title}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="author"> 작성자 </label>
-                <input type="text" class="form-control" id="author" value="{{board.author}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="content"> 내용 </label>
-                <textarea class="form-control" id="content" readonly>{{board.content}}</textarea>
-            </div>
-        </form>
-        {{#board.filePath}}
-            <div>
-                <img src={{.}} class="img-fluid">
-                <br>
-            </div>
-        {{/board.filePath}}
+        </div>
     </div>
-
-    <div class="p-2 col-md-8">
-        <a href="/" role="button" class="btn btn-secondary">취소</a>
-        <a href="/board/update/{{board.id}}" role="button" class="btn btn-secondary">수정</a>
-    </div>
-</div>
-
-{{>layout/footer}}
+</body>
+</html>

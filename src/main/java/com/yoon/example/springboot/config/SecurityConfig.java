@@ -21,10 +21,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("/", "/css/**", "/images/**",
+                .antMatchers("/", "/board/read/**", "/css/**", "/images/**",
                         "/js/**", "/h2-console/**").permitAll()
 
-                .antMatchers("/api/v1/**", "/board/**").hasRole("USER")
+                .antMatchers("/api/v1/**", "/board/save", "/board/update/**").hasRole("USER")
                 .antMatchers("/register").hasRole("NOT_ENROLLED")
                 .anyRequest().authenticated()
 

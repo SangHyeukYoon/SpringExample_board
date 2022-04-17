@@ -1,28 +1,54 @@
-{{>layout/header}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h1 class="text-center">게시글 등록</h1>
+    <link href="https://fonts.googleapis.com/css?family=Jua:400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" defer></script>
 
-<div class="container square-box">
-    <div class="col-md-8">
-        <form methos="POST" enctype="multipart/form-data" id="fileUploadForm">
-            <div class="form-group">
-                <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" placeholder="제목을 입력하세요">
-            </div>
-            <div class="form-group">
-                <label for="author">작성자</label>
-                <input type="text" class="form-control" id="author" value={{nickname}} readonly>
-            </div>
-            <div class="form-group">
-                <label for="content">내용</label>
-                <textarea class="form-control" id="content" placeholder="내용을 입력하세요"></textarea>
-            </div>
-            <div class="form-group">
-                <input type="file" id="files" name="files" multiple="multiple">
-            </div>
-        </form>
-        <a href="/" role="button" class="btn btn-secondary">글 취소</a>
-        <button type="button" class="btn btn-primary" id="btn-save">등록</button>
+    <link rel="stylesheet" href="/css/save-style.css">
+    <script src="/js/app/save.js" defer></script>
+
+    <title>Write Article</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="site-name">Spring Boot Example</a>
+    </nav>
+    
+    <div class="content-sector">
+        <div class="board-name">
+            <h2>글쓰기</h2>
+        </div>
+
+        <div class="write-area">
+            <form methos="POST" enctype="multipart/form-data" id="fileUploadForm" class="write-form">
+                <input type="text" class="form-control" id="author" value={{nickname}} hidden>
+
+                <div class="form-title">
+                    <label for="title"><b>제목</b></label>
+                    <input type="text" id="title" name="title" class="input-title" placeholder="제목을 입력하세요">
+                </div>
+
+                <div class="form-content">
+                    <label for="content-label"><b>내용</b></label>
+                    <textarea name="content" class="content" id="content" placeholder="내용을 입력하세요"></textarea>
+                </div>
+
+                <div class="form-files">
+                    <label for="files"><b>사진 첨부</b></label>
+                    <input type="file" id="files" name="files" multiple="multiple">
+                </div>
+
+                <div class="form-btn">
+                    <button class="cancel-btn"><a href="#">글취소</a></button>
+                    <button type="button" class="save-btn" id="btn-save">등록</button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
-{{>layout/footer}}
+</body>
+</html>

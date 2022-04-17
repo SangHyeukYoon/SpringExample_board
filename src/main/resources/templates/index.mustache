@@ -1,57 +1,80 @@
-{{>layout/header}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h1 class="text-center">게시판</h1>
+    <link href="https://fonts.googleapis.com/css?family=Jua:400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" defer></script>
 
-<div class="container square-box">
-    <div class="row">
+    <link rel="stylesheet" href="/css/index-style.css">
+    <script src="/js/app/index.js" defer></script>
 
-        <div class="col">
-            <a href="/board/save" role="button" class="btn btn-primary">글 등록</a>
-        </div>
-        <div class="col-6"></div>
-        <div class="col justify-content-end">
-            {{#nickname}}
-                반갑습니다! <span id="user"><b>{{nickname}}</b> 님</span>
-                <a href="/logout" class="btn btn-info active" role="button">Logout</a>
-            {{/nickname}}
-            {{^nickname}}
-                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
-            {{/nickname}}
-        </div>
-
-    </div>
-</div>
-
-<br>
-
-<div class="d-flex justify-content-center">
-<table class="table table-horizontal table-bordered square-box">
-    <thead class="thead-strong">
-    <tr>
-        <th scope="col" style="width: 70%">제목</th>
-        <th scope="col" style="width: 30%">작성자</th>
-    </tr>
-    </thead>
-    <tbody id="tbody">
-    {{#boards}}
-        <tr>
-            <td><a href="/board/read/{{id}}">{{title}}</a></td>
-            <td>{{author}}</td>
-        </tr>
-    {{/boards}}
-    </tbody>
-</table>
-</div>
-
-<input type="hidden" id="maxPage" value={{maxPage}}>
-
-
-<nav aria-label="page navigator">
-<ul class="pagination justify-content-center">
-    <li id="li_prev"><a class="page-link" id="a_prev">Previous</a></li>
-    <ul class="list-group list-group-horizontal" id="navigation"></ul>
-    <li id="li_next"><a class="page-link" id="a_next">Next</a></li>
-</ul>
+    <title>Dashboard</title>
+</head>
+<body>
+<nav class="navbar">
+    <a href="/" class="site-name">Spring Boot Example</a>
 </nav>
 
-{{>layout/footer}}
+<div class="content-sector">
+    <div class="board-name">
+        <h2>자유 게시판</h2>
+    </div>
+
+    <div class="write-login">
+        <div class="write-sector">
+            <button class="write-btn"><a href="/board/save">글쓰기</a></button>
+        </div>
+
+        <div class="login-sector">
+            {{#nickname}}
+                반갑습니다! <b>{{nickname}}</b> 님 
+                <button class="logout-btn">
+                    <a href="/logout">Logout</a>
+                </button>
+            {{/nickname}}
+
+            {{^nickname}}
+                <button class="g-login-btn">
+                    <a href="/oauth2/authorization/google">Login with Google</a>
+                </button>
+            {{/nickname}}
+        </div>
+    </div>
+
+    <div class="articles">
+        <table>
+            <tr>
+                <th scope="col" class="article-no">No.</th>
+                <th scope="col" class="articles-title">제목</th>
+                <th scope="col" class="article-author">작성자</th>
+                <th scope="col" class="article-date">작성 날짜</th>
+            </tr>
+            <tbody id="tbody">
+                <thread>
+                    {{#boards}}
+                        <tr>
+                            <td>{{id}}</td>
+                            <td><a href="/board/read/{{id}}">{{title}}</a></td>
+                            <td>{{author}}</td>
+                            <td>2022-04-17</td>
+                        </tr>
+                    {{/boards}}
+                </thread>
+            </tbody>
+        </table>
+    </div>
+
+    <input type="hidden" id="maxPage" value={{maxPage}}>
+
+    <div class="navigator">
+        <button class="navBtn prev"><a id="prev-a">이전 페이지</a></button>
+        <div class="nav-insert"></div>
+        <button class="navBtn next"><a id="next-a">다음 페이지</a></button>
+    </div>
+</div>
+</body>
+</html>

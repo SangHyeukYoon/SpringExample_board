@@ -1,47 +1,61 @@
-{{>layout/header}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<h1 class="text-center">게시글 수정</h1>
+    <link href="https://fonts.googleapis.com/css?family=Jua:400" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic+Coding:400" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" defer></script>
 
-<div class="container square-box">
-    <div class="col-md-8">
-        <form>
-            <div class="form-group">
-                <label for="title">글번호</label>
-                <input type="text" class="form-control" id="id"value="{{board.id}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="title">제목</label>
-                <input type="text" class="form-control" id="title" value="{{board.title}}">
-            </div>
-            <div class="form-group">
-                <label for="author"> 작성자 </label>
-                <input type="text" class="form-control" id="author" value="{{board.author}}" readonly>
-            </div>
-            <div class="form-group">
-                <label for="content"> 내용 </label>
-                <textarea class="form-control" id="content">{{board.content}}</textarea>
-            </div>
-        </form>
-        {{#board.filePath}}
-            <div class="container">
-            <div class="row">
-                <div class="col-lg">
-                    <img src={{.}} class="img-fluid"> 
+    <link rel="stylesheet" href="/css/update-style.css">
+    <script src="/js/app/update.js" defer></script>
+
+    <title>Update Article</title>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="/" class="site-name">Spring Boot Example</a>
+    </nav>
+    
+    <div class="content-sector">
+        <div class="board-name">
+            <h2>글수정</h2>
+        </div>
+
+        <div class="write-area">
+            <div class="write-form">
+                <input type="text" class="form-control" id="id" value="{{board.id}}" hidden>
+
+                <div class="form-title">
+                    <label for="title"><b>제목</b></label>
+                    <input type="text" id="title" name="title" class="input-title" value="{{board.title}}">
                 </div>
 
-                <div class="col-sm">
-                    <button type="button" class="btn btn-danger" name="btn-del-img" value={{.}}>X</button>
+                <div class="form-content">
+                    <label for="content-label"><b>내용</b></label>
+                    <textarea name="content" class="content" id="content">{{board.content}}</textarea>
+                </div>
+
+                <div class="form-files">
+                    <label for="files"><b>사진 수정</b></label>
+                    
+                    {{#board.filePath}}
+                        <div class="img-list">
+                            <img src={{.}} alt="image" />
+                            <button class="btn-del-img" name="btn-del-img" value={{.}}>X</button>
+                        </div>
+                    {{/board.filePath}}
+                </div>
+
+                <div class="form-btn">
+                    <button class="cancel-btn"><a href="/">취소</a></button>
+                    <button type="button" class="upate-btn" id="btn-update">수정</button>
+                    <button class="delete-btn" id="btn-delete">삭제</button>
                 </div>
             </div>
-            </div>
-        {{/board.filePath}}
+        </div>
     </div>
-
-    <div class="p-2 col-md-8">
-        <a href="/" role="button" class="btn btn-secondary">취소</a>
-        <button type="button" class="btn btn-primary" id="btn-update">수정</button>
-        <button type="button" class="btn btn-danger" id="btn-delete">삭제</button>
-    </div>
-</div>
-
-{{>layout/footer}}
+</body>
+</html>

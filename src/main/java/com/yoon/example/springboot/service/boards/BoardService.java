@@ -1,6 +1,7 @@
 package com.yoon.example.springboot.service.boards;
 
 import com.yoon.example.springboot.domain.board.*;
+
 import com.yoon.example.springboot.domain.user.User;
 import com.yoon.example.springboot.domain.user.UserRepository;
 import com.yoon.example.springboot.web.UnauthorizedException;
@@ -27,10 +28,12 @@ public class BoardService {
     private final UserRepository userRepository;
 
     private final FileSaveUtil fileSaveUtil;
+    private final S3Uploader s3Uploader;
 
     @Transactional
     public Long save(BoardsSaveRequestDto requestDto) throws Exception {
-        List<UploadedFiles> uploadedFiles = fileSaveUtil.saveFiles(requestDto.getFiles());
+//        List<UploadedFiles> uploadedFiles = fileSaveUtil.saveFiles(requestDto.getFiles());
+        List<UploadedFiles> uploadedFiles = s3Uploader.uploadFiles(requestDto.getFiles());
 
         User user = userRepository.findByEmail(requestDto.getUserEmail())
                 .orElseThrow(() -> new UsernameNotFoundException("유저를 찾을 수 없습니다."));

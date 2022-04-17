@@ -1,0 +1,213 @@
+body {
+    margin: 0;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #263343;
+    padding: 8px 12px;
+}
+
+.site-name {
+    font-size: 32px;
+    font-family: "Jua";
+    color: white;
+    text-decoration: none;
+}
+
+.board-name {
+    font-family: "Jua";
+    font-size: 20px;
+}
+
+.content-sector {
+    width: 80%;
+    margin: 0 auto;
+}
+
+.write-login {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+    padding-bottom: 10px;
+    font-family: "Nanum+Gothic+Coding";
+}
+
+.write-btn {
+    border: 0;
+    border-radius: 4px;
+    width: 80px;
+    height: 40px;
+    background-color: rgb(37, 113, 255);
+    color: white;
+    font-size: 16px;
+}
+
+.write-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.logout-btn {
+    border: 0;
+    border-radius: 4px;
+    width: 80px;
+    height: 40px;
+    background-color: red;
+    color: white;
+    font-size: 16px;
+}
+
+.logout-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.g-login-btn {
+    border: 0;
+    border-radius: 4px;
+    width: 160px;
+    height: 40px;
+    background-color: rgb(26, 145, 41);
+    color: white;
+    font-size: 16px;
+}
+
+.g-login-btn a {
+    text-decoration: none;
+    color: white;
+}
+
+.articles table {
+    table-layout: fixed;
+    width: 100%;
+    text-align: left;
+
+    border-top-style: solid;
+    border-top-width: 1px;
+
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+
+    font-family: "Nanum+Gothic+Coding";
+}
+
+.article-no {
+    width: 10%;
+}
+
+.articles-title {
+    width: 40%;
+}
+
+.article-author {
+    width: 30%;
+}
+
+.article-date {
+    width: 20%;
+}
+
+.navigator {
+    display: flex;
+    justify-content: center;
+    margin: 10px auto;
+    font-family: "Nanum+Gothic+Coding";
+}
+
+.navBtn {
+    border: 0;
+    border-radius: 3px;
+    background-color: rgb(231, 231, 228);
+    margin: auto 1px;
+}
+
+.navBtn a {
+    text-decoration: none;
+    color: rgb(0, 68, 255);
+}
+
+.navBtn-active {
+    border: 0;
+    border-radius: 3px;
+    background-color: rgb(138, 138, 138);
+    margin: auto 1px;
+}
+
+.navBtn-active a {
+    text-decoration: none;
+    color: black;
+}
+
+.nav-insert {
+    display: flex;
+}
+
+@media screen and (max-width: 768px) {
+    .navbar {
+        height: 30px;
+    }
+    
+    .board-name {
+        font-size: 14px;
+        margin-left: 5px;
+    }
+
+    .content-sector {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .navbar a {
+        font-size: 16px;
+    }
+
+    .board-name {
+        padding: 0;
+    }
+
+    .write-login {
+        height: 20px;
+    }
+
+    .write-btn {
+        width: 65px;
+        height: 25px;
+        background-color: rgb(37, 113, 255);
+        color: white;
+        font-size: 12px;
+        margin-left: 1px;
+    }
+    
+    .g-login-btn {
+        width: 140px;
+        height: 25px;
+        background-color: rgb(26, 145, 41);
+        color: white;
+        font-size: 12px;
+        margin-right: 1px;
+    }
+
+    .logout-btn {
+        width: 65px;
+        height: 25px;
+        background-color: red;
+        color: white;
+        font-size: 12px;
+        margin-right: 1px;
+    }
+
+    .articles table {
+        font-size: 14px;
+    }
+
+    .navBtn {
+        font-size: 12px;
+    }
+
+    .navBtn-active {
+        font-size: 12px;
+    }
+}
