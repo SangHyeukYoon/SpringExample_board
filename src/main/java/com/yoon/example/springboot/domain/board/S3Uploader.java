@@ -29,12 +29,14 @@ public class S3Uploader {
     public List<UploadedFiles> uploadFiles(List<MultipartFile> files) throws Exception {
         List<UploadedFiles> uploadedFilesList = new ArrayList<>();
 
-        for (MultipartFile multipartFile: files) {
-            String realName = multipartFile.getOriginalFilename();
-            File uploadFile = File.createTempFile(UUID.randomUUID().toString(), "_" + realName);
-            multipartFile.transferTo(uploadFile);
+        if (files != null && ! files.isEmpty()) {
+            for (MultipartFile multipartFile : files) {
+                String realName = multipartFile.getOriginalFilename();
+                File uploadFile = File.createTempFile(UUID.randomUUID().toString(), "_" + realName);
+                multipartFile.transferTo(uploadFile);
 
-            uploadedFilesList.add(upload2S3(uploadFile, realName));
+                uploadedFilesList.add(upload2S3(uploadFile, realName));
+            }
         }
 
         return uploadedFilesList;

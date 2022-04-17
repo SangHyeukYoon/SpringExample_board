@@ -13,12 +13,19 @@ var main = {
         $("button[name='btn-del-img']").on('click', function () {
             _this.deleteImg($(this).val(), $(this).parent());
         });
+
+        textContent = $("#content").val();
+        textContent = textContent.replaceAll("<br>", "\r\n");
+        $("#content").val(textContent);
     },
 
     update : function () {
+        textContent = $("#content").val();
+        textContent = textContent.replaceAll(/(\n|\r\n)/g, "<br>");
+
         var data = {
             title : $("#title").val(),
-            content : $("#content").val()
+            content : textContent
         };
         
         var id = $("#id").val();
